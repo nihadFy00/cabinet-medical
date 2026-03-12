@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ordonnances', function (Blueprint $table) {
         $table->id();
         $table->text('contenu');
-        $table->date('date_emission');
+        $table->date('date_prescription');
         $table->foreignId('consultation_id')->constrained()->onDelete('cascade');
         $table->timestamps();
     });

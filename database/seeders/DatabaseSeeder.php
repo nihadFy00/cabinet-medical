@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
             $this->call([
                 MedecinSeeder::class,
                 PatientSeeder::class,
+                RendezvousSeeder::class,
+                ConsultationSeeder::class,
+                OrdonnanceSeeder::class,
             ]);
         User::factory()->create([
             'name' => 'Test User',
