@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('rendezvous', function (Blueprint $table) {
+       Schema::create('rdv', function (Blueprint $table) {
         $table->id();
         $table->dateTime('date_rdv');
         $table->enum('statut', ['en_attente', 'confirme', 'annule', 'termine'])->default('en_attente'); // Gestion des statuts [cite: 88]

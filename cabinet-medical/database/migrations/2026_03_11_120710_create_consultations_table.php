@@ -12,15 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('consultations', function (Blueprint $table) {
-        $table->id();
+            $table->id();
+        
+        // Clés étrangères simplifiées
+        $table->unsignedBigInteger('patient_id');
+        $table->unsignedBigInteger('medecin_id');
+        $table->unsignedBigInteger('rendezvous_id')->nullable();
+
+        // Champs de données
         $table->date('date_consultation');
-        $table->text('compte_rendu'); // Saisie du compte-rendu [cite: 91]
-        $table->foreignId('patient_id')->constrained()->onDelete('cascade');
-        $table->foreignId('medecin_id')->constrained()->onDelete('cascade');
-        $table->foreignId('rendezvous_id')->nullable()->constrained('rendezvous')->onDelete('set null');
+        $table->text('notes_medecin');
+        $table->float('poids')->nullable();
+        $table->float('tension')->nullable();
         $table->timestamps();
+
+        // Définition des contraintes APRES la création des colonnes
+        $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+        $table->foreign('medecin_id')->references('id')->on('medecins')->onDelete('cascade');
+        $table->foreign('rendezvous_id')->references('id')->on('rdv')->onDelete('set null');
     });
-    }
+}
+    
 
     /**
      * Reverse the migrations.
