@@ -10,3 +10,4 @@ Route::get('/', function () {
 
 Route::resource('consultations', ConsultationController::class);
 Route::resource('ordonnances', OrdonnanceController::class);
+Route::get('ordonnances/{id}/pdf', [OrdonnanceController::class, 'generatePDF'])->name('ordonnances.pdf');

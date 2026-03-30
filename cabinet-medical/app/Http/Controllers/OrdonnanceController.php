@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Ordonnance;
 use App\Models\Consultation;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrdonnanceController extends Controller
 {
@@ -28,9 +27,7 @@ class OrdonnanceController extends Controller
             'instructions'    => 'nullable',
             'date_ordonnance' => 'required|date',
         ]);
-
         Ordonnance::create($request->all());
-
         return redirect()->route('ordonnances.index')
                          ->with('success', 'Ordonnance ajoutée avec succès!');
     }
@@ -52,7 +49,6 @@ class OrdonnanceController extends Controller
     {
         $ordonnance = Ordonnance::findOrFail($id);
         $ordonnance->update($request->all());
-
         return redirect()->route('ordonnances.index')
                          ->with('success', 'Ordonnance mise à jour!');
     }
@@ -62,5 +58,13 @@ class OrdonnanceController extends Controller
         Ordonnance::findOrFail($id)->delete();
         return redirect()->route('ordonnances.index')
                          ->with('success', 'Ordonnance supprimée!');
+    }
+
+    // توليد PDF للوصفة الطبية
+    public function generatePDF($id)
+    {
+        $ordonnance = Ordonnance::findOrFail($id);
+        $pdf = Pdf::loadView('ordonnances.pdf', compact('ordonnance'));
+        return $pdf->download('ordonnance-'.$id.'.pdf');
     }
 }
