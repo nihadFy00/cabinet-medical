@@ -2,12 +2,36 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Patient extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'code_patient', 'nom', 'prenom', 'date_naissance', 
-        'genre', 'telephone', 'antecedents_medicaux'
+        'user_id',
+        'birth_date',
+        'blood_type',
+        'medical_history',
     ];
+
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Rendezvous::class);
+    }
+
+    public function consultations(): HasMany
+    {
+        return $this->hasMany(Consultation::class);
+    }
 }

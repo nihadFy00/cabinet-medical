@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rendezvous extends Model
 {
-    protected $table = 'rdv';
+    protected $table = 'rendezvous';
     protected $fillable = [
     'date_rdv', 
     'motif', 

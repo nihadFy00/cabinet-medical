@@ -29,7 +29,7 @@ return new class extends Migration
         // Définition des contraintes APRES la création des colonnes
         $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
         $table->foreign('medecin_id')->references('id')->on('medecins')->onDelete('cascade');
-        $table->foreign('rendezvous_id')->references('id')->on('rdv')->onDelete('set null');
+        $table->foreign('rendezvous_id')->references('id')->on('rendezvous')->onDelete('set null');
     });
 }
     
