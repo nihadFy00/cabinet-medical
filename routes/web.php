@@ -1,20 +1,9 @@
-<?php
+require base_path('module_rendez_vous/webtest.php');
+use App\Mail\AppointmentConfirmation;
+use App\Models\Appointment;
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/test-mail', function () {
+    // On récupère un RDV de test avec Eloquent
+    $appointment = Appointment::first(); 
+    return new AppointmentConfirmation($appointment);
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
