@@ -1,9 +1,14 @@
-require base_path('module_rendez_vous/webtest.php');
+<?php
+
+use Illuminate\Support\Facades\Route;
 use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/test-mail', function () {
-    // On récupère un RDV de test avec Eloquent
-    $appointment = Appointment::first(); 
-    return new AppointmentConfirmation($appointment);
+    // Ghadi n-testiw ghi l-vue bla ma n-7tajo l-base de données daba
+    return new AppointmentConfirmation();
 });
