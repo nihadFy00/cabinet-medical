@@ -1,4 +1,3 @@
-require base_path('module_rendez_vous/webtest.php');
 use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 
