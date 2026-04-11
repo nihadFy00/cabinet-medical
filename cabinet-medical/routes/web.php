@@ -2,6 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\SecretaryController;
+use App\Http\Controllers\PatientController;
+>>>>>>> Stashed changes
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +25,28 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+<<<<<<< Updated upstream
+=======
+
+// ─── Dashboards par rôle ───
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
+});
+
+Route::middleware(['auth', 'role:doctor'])->group(function () {
+    Route::get('/doctor/dashboard', [DoctorController::class, 'dashboard'])
+        ->name('doctor.dashboard');
+});
+
+Route::middleware(['auth', 'role:secretary'])->group(function () {
+    Route::get('/secretary/dashboard', [SecretaryController::class, 'dashboard'])
+        ->name('secretary.dashboard');
+});
+
+Route::middleware(['auth', 'role:patient'])->group(function () {
+    Route::get('/patient/dashboard', [PatientController::class, 'dashboard'])
+        ->name('patient.dashboard');
+});
+>>>>>>> Stashed changes
