@@ -23,12 +23,14 @@
         <p><strong>Ordonnance #:</strong> {{ $ordonnance->id }}</p>
         <p><strong>Date:</strong> {{ $ordonnance->date_ordonnance }}</p>
         <p><strong>Consultation #:</strong> {{ $ordonnance->consultation_id }}</p>
+        <p><strong>Nom du Médecin:</strong> {{ $ordonnance->consultation->medecin->nom ?? '' }}</p>
+        <p><strong>Prénom du Médecin:</strong> {{ $ordonnance->consultation->medecin->prenom ?? '' }}</p>
+        <p><strong>Spécialité:</strong> {{ $ordonnance->consultation->medecin->specialite ?? '' }}</p>
     </div>
 
     <div class="medicaments">
         <h3>Médicaments:</h3>
         <p>{{ $ordonnance->medicaments }}</p>
-
         @if($ordonnance->instructions)
         <h3>Instructions:</h3>
         <p>{{ $ordonnance->instructions }}</p>
