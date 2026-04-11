@@ -12,8 +12,7 @@
 <th>Action</th>
 </tr>
 
-@foreach($rdvs as $rdv)
-
+@foreach($rendezvous as $rdv)
 <tr>
 
 <td>{{ $rdv->patient->nom }}</td>
