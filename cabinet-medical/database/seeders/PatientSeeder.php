@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Patient; // Importation du modèle
+use App\Models\Patient; 
 class PatientSeeder extends Seeder
 {
     /**

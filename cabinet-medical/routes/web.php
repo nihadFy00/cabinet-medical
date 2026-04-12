@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MedecinController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,5 +24,9 @@ Route::post('/patients', [PatientController::class, 'store'])->name('patients.st
 Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
 
 Route::get('/patients/{patient}', [PatientController::class, 'show'])->name('patients.show');
+
+Route::get('/medecins', [MedecinController::class, 'index'])->name('medecins.index');
+Route::get('/medecins/create', [MedecinController::class, 'create'])->name('medecins.create');
+Route::post('/medecins', [MedecinController::class, 'store'])->name('medecins.store');
 
 require __DIR__.'/auth.php';

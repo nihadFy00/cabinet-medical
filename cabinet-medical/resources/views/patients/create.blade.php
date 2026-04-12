@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Créer une Fiche Patient</title>
-    </head>
+</head>
 <body>
     <h1>Ajouter un Nouveau Patient</h1>
 
     @if(session('success'))
-        <div style="color: green;">{{ session('success') }}</div>
+        <div style="color: green; font-weight: bold;">{{ session('success') }}</div>
     @endif
 
     @if($errors->any())
@@ -40,6 +40,19 @@
         </div>
 
         <div>
+            <label>Genre :</label><br>
+            <select name="genre" required>
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Téléphone :</label><br>
+            <input type="text" name="telephone" value="{{ old('telephone') }}" placeholder="Ex: 0612345678">
+        </div>
+
+        <div>
             <label>Groupe Sanguin :</label><br>
             <select name="blood_type" required>
                 <option value="">--Sélectionner--</option>
@@ -61,6 +74,5 @@
 
         <br>
         <button type="submit">Enregistrer la Fiche Patient</button>
-    </form>
-</body>
+    </form> </body>
 </html>

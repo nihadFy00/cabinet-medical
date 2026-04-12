@@ -17,9 +17,9 @@
     <tbody>
         @foreach($patients as $patient)
         <tr>
-            <td>{{ $patient->user->name }}</td>
-            <td>{{ $patient->birth_date }}</td>
-            <td>{{ $patient->blood_type }}</td>
+            <td>{{ $patient->nom }}</td>
+            <td>{{ $patient->date_naissance }}</td>
+            <td>{{ $patient->genre }}</td>
             <td>
                 <a href="#">Modifier</a> | 
                 <a href="{{ route('patients.show', $patient->id) }}">Historique</a>

@@ -23,7 +23,6 @@ class PatientController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'birth_date' => 'required|date',
-            'blood_type' => 'required|string',
             'medical_history' => 'nullable|string',
         ]);
 
@@ -37,11 +36,15 @@ class PatientController extends Controller
 
         // 3. Création de la fiche patient liée à l'user 
         Patient::create([
-            'user_id' => $user->id,
-            'birth_date' => $request->birth_date,
-            'blood_type' => $request->blood_type,
-            'medical_history' => $request->medical_history,
-        ]);
+        'user_id' => $user->id,
+        'code_patient' => 'P-' . strtoupper(substr(uniqid(), -5)), 
+        'nom' => $request->name, 
+        'prenom' => 'Patient', 
+        'date_naissance' => $request->birth_date,
+        'genre' => $request->genre,
+        'telephone' => '0000000000',
+        'antecedents_medicaux' => $request->medical_history ?? 'Aucun',
+    ]);
 
         return redirect()->back()->with('success', 'Patient créé avec succès !');
     }
