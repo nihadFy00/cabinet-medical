@@ -11,7 +11,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('date_rdv');
             $table->string('motif');
-            $table->enum('statut', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending');
+            $table->string('statut')->default('pending');
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('medecin_id');
             $table->timestamps();
