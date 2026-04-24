@@ -3,12 +3,14 @@ use Illuminate\Support\Facades\Route;
 use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/maquettes/login', function () {
+    return file_get_contents(public_path('maquettes/login.html'));
 });
 
-Route::get('/test-mail', function () {
-    return new AppointmentConfirmation();
+Route::get('/maquettes/dashboard', function () {
+    return file_get_contents(public_path('maquettes/dashboard.html'));
 });
 
-require base_path('module_rendez_vous/webtest.php');
+Route::get('/maquettes/appointments', function () {
+    return file_get_contents(public_path('maquettes/appointments.html'));
+});
